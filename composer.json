@@ -1,0 +1,16 @@
+{
+    "name": "Eluinhost/minotar-cache",
+    "description": "Serve minotar skins locally",
+    "minimum-stability": "stable",
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Eluinhost",
+            "email": "graham_howden1@yahoo.co.uk"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {"PublicUHC\\MinotarCache\\": "src/PublicUHC/MinotarCache"}
+    }
+}
