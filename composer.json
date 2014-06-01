@@ -9,7 +9,9 @@
             "email": "graham_howden1@yahoo.co.uk"
         }
     ],
-    "require": {},
+    "require": {
+        "symfony/http-foundation": "2.4.x-dev"
+    },
     "autoload": {
         "psr-4": {"PublicUHC\\MinotarCache\\": "src/PublicUHC/MinotarCache"}
     }
