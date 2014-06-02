@@ -7,13 +7,6 @@ use Stash\Interfaces\PoolInterface;
 
 abstract class Downloader {
 
-    private $cachePool;
-
-    public function __construct(PoolInterface $cache)
-    {
-        $this->cachePool = $cache;
-    }
-
     /**
      * @param $username String the username to fetch
      * @return resource the skin data

@@ -26,7 +26,7 @@ class MinotarLikeDownloaderTest extends PHPUnit_Framework_TestCase {
             ->method('get')
             ->will($this->returnValue($this->response));
 
-        $this->downloader = new MinotarLikeDownloader(new Pool(new BlackHole()), $this->client, 30);
+        $this->downloader = new MinotarLikeDownloader($this->client, 30);
     }
 
     public function testFetchFromURL() {
@@ -67,21 +67,21 @@ class MinotarLikeDownloaderTest extends PHPUnit_Framework_TestCase {
 
     public function testGrabSkinFromMinotar() {
         $client = new Client(['base_url' => 'https://minotar.net/']);
-        $downloader = new MinotarLikeDownloader(new Pool(new BlackHole()), $client, 30);
+        $downloader = new MinotarLikeDownloader($client, 30);
 
         $downloader->downloadSkin('ghowden');
     }
 
     public function testGrabHelmFromMinotar() {
         $client = new Client(['base_url' => 'https://minotar.net/']);
-        $downloader = new MinotarLikeDownloader(new Pool(new BlackHole()), $client, 30);
+        $downloader = new MinotarLikeDownloader($client, 30);
 
         $downloader->downloadHelm('ghowden', 16);
     }
 
     public function testGrabHeadFromMinotar() {
         $client = new Client(['base_url' => 'https://minotar.net/']);
-        $downloader = new MinotarLikeDownloader(new Pool(new BlackHole()), $client, 30);
+        $downloader = new MinotarLikeDownloader($client, 30);
 
         $downloader->downloadHead('ghowden', 16);
     }

@@ -14,12 +14,10 @@ class MinotarLikeDownloader extends Downloader {
     private $client;
 
     /**
-     * @param PoolInterface $cache the caching pool to use
      * @param Client $client the client to use, expects the base_url to be set to the minotar-like service URL
      * @param $timeout
      */
-    public function __construct(PoolInterface $cache, Client $client, $timeout) {
-        parent::__construct($cache);
+    public function __construct(Client $client, $timeout) {
         $this->client = $client;
         $this->timeout = $timeout;
     }
