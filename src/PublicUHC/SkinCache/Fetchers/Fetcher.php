@@ -7,7 +7,7 @@ use PublicUHC\SkinCache\Downloaders\Downloader;
 use PublicUHC\SkinCache\Formatters\Formatter;
 use Stash\Interfaces\PoolInterface;
 
-abstract class Fetcher {
+class Fetcher {
 
     private $downloader;
     private $formatter;
@@ -20,9 +20,19 @@ abstract class Fetcher {
         $this->cachePool = $cachePool;
     }
 
-    abstract function fetchSkin($username);
+    function fetchSkin($username) {
+        //TODO check cache and download if needed
+        $this->formatter->format($this->downloader->downloadSkin($username));
+    }
 
-    abstract function fetchHelm($username);
+    function fetchHelm($username, $size) {
+        //TODO check cache and download if needed
+        $this->formatter->format($this->downloader->downloadHelm($username, $size));
+    }
 
-    abstract function fetchHead($username);
+    function fetchHead($username, $size)
+    {
+        //TODO check cache and download if needed
+        $this->formatter->format($this->downloader->downloadHead($username, $size));
+    }
 } 
