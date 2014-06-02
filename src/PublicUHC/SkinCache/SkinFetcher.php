@@ -1,6 +1,6 @@
 <?php
 
-namespace PublicUHC\SkinCache\Fetchers;
+namespace PublicUHC\SkinCache;
 
 
 use PublicUHC\SkinCache\Downloaders\Downloader;
@@ -22,17 +22,17 @@ class SkinFetcher {
 
     function fetchSkin($username) {
         //TODO check cache and download if needed
-        $this->formatter->format($this->downloader->downloadSkin($username));
+        return $this->formatter->format($this->downloader->downloadSkin($username));
     }
 
     function fetchHelm($username, $size) {
         //TODO check cache and download if needed
-        $this->formatter->format($this->downloader->downloadHelm($username, $size));
+        return $this->formatter->format($this->downloader->downloadHelm($username, $size));
     }
 
     function fetchHead($username, $size)
     {
         //TODO check cache and download if needed
-        $this->formatter->format($this->downloader->downloadHead($username, $size));
+        return $this->formatter->format($this->downloader->downloadHead($username, $size));
     }
 } 
