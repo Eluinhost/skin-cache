@@ -2,12 +2,13 @@
 
 namespace PublicUHC\SkinCache\Downloaders;
 
+use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use PHPUnit_Framework_TestCase;
 use Stash\Driver\BlackHole;
 use Stash\Pool;
 
-class MinotarDownloaderTest extends PHPUnit_Framework_TestCase {
+class MinotarLikeDownloaderTest extends PHPUnit_Framework_TestCase {
 
     /** @var $downloader MinotarLikeDownloader */
     private $downloader;
@@ -49,20 +50,26 @@ class MinotarDownloaderTest extends PHPUnit_Framework_TestCase {
             ->method('get')
             ->will($this->throwException(new RequestException('', $fakeRequest)));
 
-        $this->setExpectedException('GuzzleHttp\Exception\RequestException');
+        $this->setExpectedException('PublicUHC\Downloaders\Exceptions\DownloadException');
 
         $this->downloader->_downloadFromURL('this could be anything');
     }
 
     public function testFetchNon200FromURL() {
-
         $this->response->expects($this->any())
             ->method('getStatusCode')
             ->will($this->returnValue(401));
 
-        $data = $this->downloader->_downloadFromURL('this could be anything');
+        $this->setExpectedException('PublicUHC\Downloaders\Exceptions\DownloadException');
 
-        $this->assertFalse($data);
+        $this->downloader->_downloadFromURL('this could be anything');
+    }
+
+    public function testGrabSkinFromMinotar() {
+        $client = new Client(['base_url' => 'https://minotar.net/']);
+        $downloader = new MinotarLikeDownloader(new Pool(new BlackHole()), $client, 30);
+
+        $downloader->downloadSkin('ghowden', 16);
     }
 }
  
