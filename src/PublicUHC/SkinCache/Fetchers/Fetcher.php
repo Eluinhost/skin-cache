@@ -3,8 +3,8 @@
 namespace PublicUHC\SkinCache\Fetchers;
 
 
-use PublicUHC\MinotarCache\Downloaders\Downloader;
-use PublicUHC\MinotarCache\Formatters\Formatter;
+use PublicUHC\SkinCache\Downloaders\Downloader;
+use PublicUHC\SkinCache\Formatters\Formatter;
 
 abstract class Fetcher {
 
