@@ -21,18 +21,49 @@ class SkinFetcher {
     }
 
     function fetchSkin($username) {
-        //TODO check cache and download if needed
-        return $this->formatter->format($this->downloader->downloadSkin($username));
+        $cacheItem = $this->cachePool->getItem('skins/skin', $username);
+
+        $data = $cacheItem->get();
+
+        if($cacheItem->isMiss()) {
+            $cacheItem->lock();
+
+            $data = $this->downloader->downloadSkin($username);
+
+            $cacheItem->set($data);
+        }
+
+        return $this->formatter->format($data);
     }
 
     function fetchHelm($username, $size) {
-        //TODO check cache and download if needed
-        return $this->formatter->format($this->downloader->downloadHelm($username, $size));
+        $cacheItem = $this->cachePool->getItem('skins/helm', $username, $size);
+
+        $data = $cacheItem->get();
+
+        if($cacheItem->isMiss()) {
+            $cacheItem->lock();
+
+            $data = $this->downloader->downloadHelm($username, $size);
+
+            $cacheItem->set($data);
+        }
+        return $this->formatter->format($data);
     }
 
     function fetchHead($username, $size)
     {
-        //TODO check cache and download if needed
-        return $this->formatter->format($this->downloader->downloadHead($username, $size));
+        $cacheItem = $this->cachePool->getItem('skins/skin/', $username);
+
+        $data = $cacheItem->get();
+
+        if($cacheItem->isMiss()) {
+            $cacheItem->lock();
+
+            $data = $this->downloader->downloadHead($username, $size);
+
+            $cacheItem->set($data);
+        }
+        return $this->formatter->format($data);
     }
-} 
+}
