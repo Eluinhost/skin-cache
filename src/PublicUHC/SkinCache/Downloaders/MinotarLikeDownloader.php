@@ -5,7 +5,6 @@ namespace PublicUHC\SkinCache\Downloaders;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use PublicUHC\SkinCache\Exceptions\DownloadException;
-use Stash\Interfaces\PoolInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 class MinotarLikeDownloader extends Downloader {

@@ -3,7 +3,6 @@
 namespace PublicUHC\SkinCache\Downloaders;
 
 use PublicUHC\SkinCache\Exceptions\DownloadException;
-use Stash\Interfaces\PoolInterface;
 
 abstract class Downloader {
 
