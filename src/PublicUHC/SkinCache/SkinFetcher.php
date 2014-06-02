@@ -7,7 +7,7 @@ use PublicUHC\SkinCache\Downloaders\Downloader;
 use PublicUHC\SkinCache\Formatters\Formatter;
 use Stash\Interfaces\PoolInterface;
 
-class Fetcher {
+class SkinFetcher {
 
     private $downloader;
     private $formatter;
