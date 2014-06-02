@@ -15,7 +15,8 @@ class MinotarLikeDownloaderTest extends PHPUnit_Framework_TestCase {
     private $client;
     private $response;
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->client = $this->getMock('GuzzleHttp\Client');
 
         $this->response = $this->getMockBuilder('GuzzleHttp\Message\Response')
@@ -29,7 +30,8 @@ class MinotarLikeDownloaderTest extends PHPUnit_Framework_TestCase {
         $this->downloader = new MinotarLikeDownloader($this->client, 30);
     }
 
-    public function testFetchFromURL() {
+    public function testFetchFromURL()
+    {
         $this->response->expects($this->once())
             ->method('getStatusCode')
             ->will($this->returnValue(200));
@@ -43,7 +45,8 @@ class MinotarLikeDownloaderTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals('TEST BODY', $data);
     }
 
-    public function testFetchFromURLFail() {
+    public function testFetchFromURLFail()
+    {
         $fakeRequest = $this->getMockBuilder('GuzzleHttp\Message\Request')->disableOriginalConstructor()->getMock();
 
         $this->client->expects($this->any())
@@ -55,7 +58,8 @@ class MinotarLikeDownloaderTest extends PHPUnit_Framework_TestCase {
         $this->downloader->_downloadFromURL('this could be anything');
     }
 
-    public function testFetchNon200FromURL() {
+    public function testFetchNon200FromURL()
+    {
         $this->response->expects($this->any())
             ->method('getStatusCode')
             ->will($this->returnValue(401));
@@ -65,21 +69,24 @@ class MinotarLikeDownloaderTest extends PHPUnit_Framework_TestCase {
         $this->downloader->_downloadFromURL('this could be anything');
     }
 
-    public function testGrabSkinFromMinotar() {
+    public function testGrabSkinFromMinotar()
+    {
         $client = new Client(['base_url' => 'https://minotar.net/']);
         $downloader = new MinotarLikeDownloader($client, 30);
 
         $downloader->downloadSkin('ghowden');
     }
 
-    public function testGrabHelmFromMinotar() {
+    public function testGrabHelmFromMinotar()
+    {
         $client = new Client(['base_url' => 'https://minotar.net/']);
         $downloader = new MinotarLikeDownloader($client, 30);
 
         $downloader->downloadHelm('ghowden', 16);
     }
 
-    public function testGrabHeadFromMinotar() {
+    public function testGrabHeadFromMinotar()
+    {
         $client = new Client(['base_url' => 'https://minotar.net/']);
         $downloader = new MinotarLikeDownloader($client, 30);
 

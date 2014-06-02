@@ -16,7 +16,8 @@ class MinotarLikeDownloader extends Downloader {
      * @param Client $client the client to use, expects the base_url to be set to the minotar-like service URL
      * @param $timeout
      */
-    public function __construct(Client $client, $timeout) {
+    public function __construct(Client $client, $timeout)
+    {
         $this->client = $client;
         $this->timeout = $timeout;
     }
@@ -42,7 +43,8 @@ class MinotarLikeDownloader extends Downloader {
      * @return resource the resource from the URL
      * @throws DownloadException if fetching URL failed or non 200 OK response
      */
-    function _downloadFromURL($path) {
+    function _downloadFromURL($path)
+    {
         try {
             $data = $this->client->get($path, ['timeout' => $this->timeout]);
             if ($data->getStatusCode() != Response::HTTP_OK) {
