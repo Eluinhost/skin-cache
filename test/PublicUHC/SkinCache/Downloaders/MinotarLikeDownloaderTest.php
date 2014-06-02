@@ -50,7 +50,7 @@ class MinotarLikeDownloaderTest extends PHPUnit_Framework_TestCase {
             ->method('get')
             ->will($this->throwException(new RequestException('', $fakeRequest)));
 
-        $this->setExpectedException('PublicUHC\Downloaders\Exceptions\DownloadException');
+        $this->setExpectedException('PublicUHC\SkinCache\Exceptions\DownloadException');
 
         $this->downloader->_downloadFromURL('this could be anything');
     }
@@ -60,7 +60,7 @@ class MinotarLikeDownloaderTest extends PHPUnit_Framework_TestCase {
             ->method('getStatusCode')
             ->will($this->returnValue(401));
 
-        $this->setExpectedException('PublicUHC\Downloaders\Exceptions\DownloadException');
+        $this->setExpectedException('PublicUHC\SkinCache\Exceptions\DownloadException');
 
         $this->downloader->_downloadFromURL('this could be anything');
     }
@@ -69,7 +69,21 @@ class MinotarLikeDownloaderTest extends PHPUnit_Framework_TestCase {
         $client = new Client(['base_url' => 'https://minotar.net/']);
         $downloader = new MinotarLikeDownloader(new Pool(new BlackHole()), $client, 30);
 
-        $downloader->downloadSkin('ghowden', 16);
+        $downloader->downloadSkin('ghowden');
+    }
+
+    public function testGrabHelmFromMinotar() {
+        $client = new Client(['base_url' => 'https://minotar.net/']);
+        $downloader = new MinotarLikeDownloader(new Pool(new BlackHole()), $client, 30);
+
+        $downloader->downloadHelm('ghowden', 16);
+    }
+
+    public function testGrabHeadFromMinotar() {
+        $client = new Client(['base_url' => 'https://minotar.net/']);
+        $downloader = new MinotarLikeDownloader(new Pool(new BlackHole()), $client, 30);
+
+        $downloader->downloadHead('ghowden', 16);
     }
 }
  
