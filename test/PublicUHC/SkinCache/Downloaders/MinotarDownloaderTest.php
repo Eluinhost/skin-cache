@@ -14,7 +14,7 @@ class MinotarDownloaderTest extends PHPUnit_Framework_TestCase {
     private $downloader;
 
     public function setUp() {
-        $this->downloader = new MinotarDownloader(new Pool(new BlackHole()));
+        $this->downloader = new MinotarDownloader(new Pool(new BlackHole()), 30);
     }
 
     protected function setCurlInstalled($installed) {
@@ -29,13 +29,13 @@ class MinotarDownloaderTest extends PHPUnit_Framework_TestCase {
 
     public function testCheckForCurl() {
         $this->setCurlInstalled(true);
-        $this->downloader->checkForCurl();
+        $this->downloader->_checkForCurl();
     }
 
     public function testCheckForCurlFail() {
         $this->setExpectedException('PublicUHC\SkinCache\Exceptions\MissingDependencyException');
         $this->setCurlInstalled(false);
-        $this->downloader->checkForCurl();
+        $this->downloader->_checkForCurl();
     }
 }
  
