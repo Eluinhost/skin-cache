@@ -31,12 +31,12 @@ class MinotarLikeDownloader extends Downloader {
 
     function downloadHelm($username, $size)
     {
-        // TODO: Implement downloadHelm() method.
+        return $this->_downloadFromURL('/helm/'.$username.'/'.$size.'.png');
     }
 
     function downloadHead($username, $size)
     {
-        // TODO: Implement downloadHead() method.
+        return $this->_downloadFromURL('/avatar/'.$username.'/'.$size.'.png');
     }
 
     /**
