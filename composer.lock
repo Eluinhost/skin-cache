@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "d03ea513ecbf41575a89017d35432bf7",
+    "hash": "b4fc2a72e02c39a1f721dee0b91df857",
     "packages": [
         {
             "name": "symfony/http-foundation",
@@ -114,6 +114,46 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "lstrojny/phpunit-function-mocker",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lstrojny/phpunit-function-mocker.git",
+                "reference": "b4faba10b7322e52c0254c0a3dc88d98d140eeec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lstrojny/phpunit-function-mocker/zipball/b4faba10b7322e52c0254c0a3dc88d98d140eeec",
+                "reference": "b4faba10b7322e52c0254c0a3dc88d98d140eeec",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPUnit_Extension_FunctionMocker": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lars Strojny",
+                    "email": "lstrojny@php.net",
+                    "homepage": "http://usrportage.de"
+                }
+            ],
+            "description": "Allows mocking otherwise untestable PHP functions through the use of namespaces",
+            "time": "2014-01-19 22:48:12"
+        },
         {
             "name": "phpunit/php-code-coverage",
             "version": "2.0.8",
