@@ -34,9 +34,14 @@ class MinotarLikeDownloaderTest extends PHPUnit_Framework_TestCase {
             ->method('getStatusCode')
             ->will($this->returnValue(200));
 
+        $stream = $this->getMock('GuzzleHttp\Stream\StreamInterface');
+        $stream->expects($this->once())
+            ->method('__toString')
+            ->will($this->returnValue('TEST BODY'));
+
         $this->response->expects($this->once())
             ->method('getBody')
-            ->will($this->returnValue('TEST BODY'));
+            ->will($this->returnValue($stream));
 
         $data = $this->downloader->_downloadFromURL('this could be anything');
 
