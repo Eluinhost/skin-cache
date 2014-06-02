@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "c78dc47fe7728d067c9698c4f976dece",
+    "hash": "c2a4c1092d7395c76cd0e978c65dea99",
     "packages": [
         {
             "name": "symfony/http-foundation",
@@ -153,6 +153,56 @@
             ],
             "description": "Allows mocking otherwise untestable PHP functions through the use of namespaces",
             "time": "2014-01-19 22:48:12"
+        },
+        {
+            "name": "nategood/httpful",
+            "version": "0.2.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nategood/httpful.git",
+                "reference": "e923b8e3903bc81e9300a386fff1074364fb3bc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nategood/httpful/zipball/e923b8e3903bc81e9300a386fff1074364fb3bc1",
+                "reference": "e923b8e3903bc81e9300a386fff1074364fb3bc1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Httpful": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nate Good",
+                    "email": "me@nategood.com",
+                    "homepage": "http://nategood.com"
+                }
+            ],
+            "description": "A Readable, Chainable, REST friendly, PHP HTTP Client",
+            "homepage": "http://github.com/nategood/httpful",
+            "keywords": [
+                "api",
+                "curl",
+                "http",
+                "requests",
+                "rest",
+                "restful"
+            ],
+            "time": "2014-05-21 10:58:38"
         },
         {
             "name": "phpunit/php-code-coverage",

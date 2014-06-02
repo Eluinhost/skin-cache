@@ -15,7 +15,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",
-        "lstrojny/phpunit-function-mocker": "0.2.0"
+        "lstrojny/phpunit-function-mocker": "0.2.0",
+        "nategood/httpful": "0.2.13"
     },
     "autoload": {
         "psr-4": {"PublicUHC\\SkinCache\\": "src/PublicUHC/SkinCache"}
