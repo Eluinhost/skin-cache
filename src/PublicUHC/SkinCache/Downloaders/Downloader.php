@@ -13,7 +13,7 @@ abstract class Downloader {
         $this->cachePool = $cache;
     }
 
-    abstract function downloadSkin($username, $size);
+    abstract function downloadSkin($username);
 
     abstract function downloadHelm($username, $size);
 

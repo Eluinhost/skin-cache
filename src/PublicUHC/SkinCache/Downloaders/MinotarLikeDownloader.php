@@ -23,9 +23,9 @@ class MinotarLikeDownloader extends Downloader {
         $this->timeout = $timeout;
     }
 
-    function downloadSkin($username, $size)
+    function downloadSkin($username)
     {
-        // TODO: Implement downloadSkin() method.
+        return $this->_downloadFromURL('/skin/'.$username);
     }
 
     function downloadHelm($username, $size)
