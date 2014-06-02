@@ -40,7 +40,7 @@ class MinotarLikeDownloader extends Downloader {
     /**
      * Get the data from the given subURL
      * @param String $path the subURL to fetch
-     * @return resource the resource from the URL
+     * @return string the resource from the URL
      * @throws DownloadException if fetching URL failed or non 200 OK response
      */
     function _downloadFromURL($path)
@@ -50,7 +50,7 @@ class MinotarLikeDownloader extends Downloader {
             if ($data->getStatusCode() != Response::HTTP_OK) {
                 throw new DownloadException();
             }
-            return $data->getBody();
+            return $data->getBody()->__toString();
         } catch (RequestException $ex) {
             throw new DownloadException();
         }
