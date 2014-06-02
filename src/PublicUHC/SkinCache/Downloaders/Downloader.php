@@ -2,13 +2,13 @@
 
 namespace PublicUHC\SkinCache\Downloaders;
 
-use Stash\Pool;
+use Stash\Interfaces\PoolInterface;
 
 abstract class Downloader {
 
     private $cachePool;
 
-    public function __construct(Pool $cache)
+    public function __construct(PoolInterface $cache)
     {
         $this->cachePool = $cache;
     }
