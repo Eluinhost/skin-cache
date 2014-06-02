@@ -4,6 +4,7 @@ namespace PublicUHC\SkinCache\Downloaders;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use PublicUHC\SkinCache\Exceptions\DownloadException;
 use Stash\Interfaces\PoolInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -41,14 +42,18 @@ class MinotarLikeDownloader extends Downloader {
     /**
      * Get the data from the given subURL
      * @param String $path the subURL to fetch
-     * @return bool|resource the resource from the URL or false if not a 200 OK response
-     * @throws RequestException if fetching URL failed
+     * @return resource the resource from the URL
+     * @throws DownloadException if fetching URL failed or non 200 OK response
      */
     function _downloadFromURL($path) {
-        $data = $this->client->get($path, ['timeout' => $this->timeout]);
-        if ($data->getStatusCode() != Response::HTTP_OK) {
-            return false;
+        try {
+            $data = $this->client->get($path, ['timeout' => $this->timeout]);
+            if ($data->getStatusCode() != Response::HTTP_OK) {
+                throw new DownloadException();
+            }
+            return $data->getBody();
+        } catch (RequestException $ex) {
+            throw new DownloadException();
         }
-        return $data->getBody();
     }
 }
