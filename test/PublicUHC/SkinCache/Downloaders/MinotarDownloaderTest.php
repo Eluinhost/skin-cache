@@ -2,40 +2,67 @@
 
 namespace PublicUHC\SkinCache\Downloaders;
 
-
-use PHPUnit_Extension_FunctionMocker;
+use GuzzleHttp\Exception\RequestException;
 use PHPUnit_Framework_TestCase;
 use Stash\Driver\BlackHole;
 use Stash\Pool;
 
 class MinotarDownloaderTest extends PHPUnit_Framework_TestCase {
 
-    /** @var $downloader MinotarDownloader */
+    /** @var $downloader MinotarLikeDownloader */
     private $downloader;
+    private $client;
+    private $response;
 
     public function setUp() {
-        $this->downloader = new MinotarDownloader(new Pool(new BlackHole()), 30);
-    }
+        $this->client = $this->getMock('GuzzleHttp\Client');
 
-    protected function setCurlInstalled($installed) {
-        $funcMocker = PHPUnit_Extension_FunctionMocker::start($this, 'PublicUHC\SkinCache\Downloaders')
-            ->mockFunction('function_exists')
+        $this->response = $this->getMockBuilder('GuzzleHttp\Message\Response')
+            ->disableOriginalConstructor()
             ->getMock();
 
-        $funcMocker->expects($this->any())
-            ->method('function_exists')
-            ->will($this->returnValue($installed));
+        $this->client->expects($this->any())
+            ->method('get')
+            ->will($this->returnValue($this->response));
+
+        $this->downloader = new MinotarLikeDownloader(new Pool(new BlackHole()), $this->client, 30);
     }
 
-    public function testCheckForCurl() {
-        $this->setCurlInstalled(true);
-        $this->downloader->_checkForCurl();
+    public function testFetchFromURL() {
+        $this->response->expects($this->once())
+            ->method('getStatusCode')
+            ->will($this->returnValue(200));
+
+        $this->response->expects($this->once())
+            ->method('getBody')
+            ->will($this->returnValue('TEST BODY'));
+
+        $data = $this->downloader->_downloadFromURL('this could be anything');
+
+        $this->assertEquals('TEST BODY', $data);
     }
 
-    public function testCheckForCurlFail() {
-        $this->setExpectedException('PublicUHC\SkinCache\Exceptions\MissingDependencyException');
-        $this->setCurlInstalled(false);
-        $this->downloader->_checkForCurl();
+    public function testFetchFromURLFail() {
+        $fakeRequest = $this->getMockBuilder('GuzzleHttp\Message\Request')->disableOriginalConstructor()->getMock();
+
+        $this->client->expects($this->any())
+            ->method('get')
+            ->will($this->throwException(new RequestException('', $fakeRequest)));
+
+        $this->setExpectedException('GuzzleHttp\Exception\RequestException');
+
+        $this->downloader->_downloadFromURL('this could be anything');
+    }
+
+    public function testFetchNon200FromURL() {
+
+        $this->response->expects($this->any())
+            ->method('getStatusCode')
+            ->will($this->returnValue(401));
+
+        $data = $this->downloader->_downloadFromURL('this could be anything');
+
+        $this->assertFalse($data);
     }
 }
  
