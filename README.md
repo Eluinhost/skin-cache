@@ -1,6 +1,6 @@
-MinotarCache
+SkinCache
 ============
 
-Cache minotar icons and serve them locally.
+Cache Minecraft skins/icons and serve them locally.
 
 DEV STATUS: IN PROGRESS / INCOMPLETE

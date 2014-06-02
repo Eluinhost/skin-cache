@@ -1,5 +1,5 @@
 <?php
-namespace PublicUHC\MinotarCache\Formatters;
+namespace PublicUHC\SkinCache\Formatters;
 
 class HttpResponseFormatter extends Formatter {
 

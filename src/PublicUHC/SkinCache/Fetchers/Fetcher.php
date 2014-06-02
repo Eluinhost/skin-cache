@@ -1,6 +1,6 @@
 <?php
 
-namespace PublicUHC\MinotarCache\Fetchers;
+namespace PublicUHC\SkinCache\Fetchers;
 
 
 use PublicUHC\MinotarCache\Downloaders\Downloader;

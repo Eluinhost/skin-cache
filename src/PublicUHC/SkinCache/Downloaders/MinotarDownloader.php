@@ -1,6 +1,6 @@
 <?php
 
-namespace PublicUHC\MinotarCache\Downloaders;
+namespace PublicUHC\SkinCache\Downloaders;
 
 
 class MinotarDownloader extends Downloader {
