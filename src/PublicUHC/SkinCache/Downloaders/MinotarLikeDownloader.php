@@ -50,7 +50,11 @@ class MinotarLikeDownloader extends Downloader {
             if ($data->getStatusCode() != Response::HTTP_OK) {
                 throw new DownloadException();
             }
-            return $data->getBody()->__toString();
+            $body = $data->getBody();
+            if(null == $body) {
+                throw new DownloadException();
+            }
+            return $body->__toString();
         } catch (RequestException $ex) {
             throw new DownloadException();
         }
