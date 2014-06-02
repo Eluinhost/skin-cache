@@ -5,8 +5,6 @@ namespace PublicUHC\SkinCache\Downloaders;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use PHPUnit_Framework_TestCase;
-use Stash\Driver\BlackHole;
-use Stash\Pool;
 
 class MinotarLikeDownloaderTest extends PHPUnit_Framework_TestCase {
 
