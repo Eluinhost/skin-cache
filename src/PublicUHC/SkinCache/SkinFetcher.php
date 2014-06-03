@@ -20,7 +20,7 @@ class SkinFetcher {
         $this->cachePool = $cachePool;
     }
 
-    function fetchSkin($username) {
+    function fetchSkin($username, $format = true) {
         $cacheItem = $this->cachePool->getItem('skins/skin', $username);
 
         $data = $cacheItem->get();
@@ -33,10 +33,10 @@ class SkinFetcher {
             $cacheItem->set($data);
         }
 
-        return $this->formatter->format($data);
+        return $format ? $this->formatter->format($data) : $data;
     }
 
-    function fetchHelm($username, $size) {
+    function fetchHelm($username, $size, $format = true) {
         $cacheItem = $this->cachePool->getItem('skins/helm', $username, $size);
 
         $data = $cacheItem->get();
@@ -48,10 +48,10 @@ class SkinFetcher {
 
             $cacheItem->set($data);
         }
-        return $this->formatter->format($data);
+        return $format ? $this->formatter->format($data) : $data;
     }
 
-    function fetchHead($username, $size)
+    function fetchHead($username, $size, $format = true)
     {
         $cacheItem = $this->cachePool->getItem('skins/skin/', $username);
 
@@ -64,6 +64,6 @@ class SkinFetcher {
 
             $cacheItem->set($data);
         }
-        return $this->formatter->format($data);
+        return $format ? $this->formatter->format($data) : $data;
     }
 }
