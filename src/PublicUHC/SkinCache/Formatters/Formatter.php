@@ -16,7 +16,7 @@ abstract class Formatter {
     public function formatData($data) {
         $data = $this->format($data);
         if($this->next != null) {
-            $data = $this->formatData($data);
+            $data = $this->next->formatData($data);
         }
         return $data;
     }
