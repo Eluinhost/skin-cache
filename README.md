@@ -13,7 +13,11 @@ All dependencies are handled by composer. Installing cURL is recommended and wil
 Usage
 -----
 
-First you will need to get hold of a PublicUHC\SkinCache\SkinFetcher.
+There is a class `PublicUHC\SkinCache\SimpleSkinFetcher` that uses some default classes and can be used like this:
+
+    $fetcher = new SimpleSkinFetcher('https://minotar.net', 10, './cache');
+
+To change the classes used or for better tweaking use the class `PublicUHC\SkinCache\SkinFetcher`.
 
 It requires a Downloader, a Formatter, a PoolInterface and a ErrorImagePainter.
 
