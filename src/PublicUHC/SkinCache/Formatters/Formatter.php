@@ -1,8 +1,13 @@
 <?php
 namespace PublicUHC\SkinCache\Formatters;
 
-abstract class Formatter {
+interface Formatter {
 
-    abstract function format($data);
+    /**
+     * Format the image data
+     * @param $data string the image that requires formatting
+     * @return mixed the formatted data
+     */
+    public function format($data);
 
 } 
