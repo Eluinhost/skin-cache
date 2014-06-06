@@ -83,7 +83,7 @@ class SkinFetcher {
             }
         }
 
-        return $format ? $this->formatter->format($data) : $data;
+        return $format ? $this->formatter->formatData($data) : $data;
     }
 
     /**
@@ -115,7 +115,7 @@ class SkinFetcher {
                 $data = $this->fetchTransparent($size, $size);
             }
         }
-        return $format ? $this->formatter->format($data) : $data;
+        return $format ? $this->formatter->formatData($data) : $data;
     }
 
     /**
@@ -147,6 +147,6 @@ class SkinFetcher {
                 $data = $this->fetchTransparent($size, $size);
             }
         }
-        return $format ? $this->formatter->format($data) : $data;
+        return $format ? $this->formatter->formatData($data) : $data;
     }
 }
