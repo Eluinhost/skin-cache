@@ -1,6 +1,8 @@
 <?php
 
 use PublicUHC\SkinCache\Formatters\Formatter;
+use PublicUHC\SkinCache\Formatters\GreyscaleFormatter;
+use PublicUHC\SkinCache\Formatters\HttpResponseFormatter;
 use PublicUHC\SkinCache\Formatters\RawImageFormatter;
 
 class FormatterTest extends PHPUnit_Framework_TestCase {
@@ -12,8 +14,8 @@ class FormatterTest extends PHPUnit_Framework_TestCase {
          * @var $chain3 Formatter
          */
         $chain1 = new RawImageFormatter();
-        $chain2 = new RawImageFormatter();
-        $chain3 = new RawImageFormatter();
+        $chain2 = new GreyscaleFormatter();
+        $chain3 = new HttpResponseFormatter();
 
         $formatter = $chain1->then($chain2)->then($chain3);
 
