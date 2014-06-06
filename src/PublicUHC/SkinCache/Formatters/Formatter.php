@@ -3,6 +3,7 @@ namespace PublicUHC\SkinCache\Formatters;
 
 abstract class Formatter {
 
+    /** @var Formatter */
     private $next;
 
     /**
@@ -21,13 +22,25 @@ abstract class Formatter {
     }
 
     /**
+     * @return Formatter|null the next chain or null
+     *
+     */
+    public function next() {
+        return $this->next;
+    }
+
+    /**
      * Add the formatter to the chain after this one
      * @param Formatter $formatter the formatter to add after
      * @return Formatter the formatter passed in
      */
     public function then(Formatter $formatter) {
-        $this->next = $formatter;
-        return $formatter;
+        if($this->next == null) {
+            $this->next = $formatter;
+        } else {
+            $this->next->then($formatter);
+        }
+        return $this;
     }
 
 } 
