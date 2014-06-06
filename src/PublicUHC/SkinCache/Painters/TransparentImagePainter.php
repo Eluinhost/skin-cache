@@ -2,9 +2,10 @@
 namespace PublicUHC\SkinCache\Painters;
 
 
-class TransparentImagePainter {
+class TransparentImagePainter implements ErrorImagePainter {
 
-    public function getImage($sizeX, $sizeY) {
+    public function getImage($sizeX, $sizeY)
+    {
         $image = imagecreatetruecolor($sizeX, $sizeY);
         imagealphablending($image, false);
         $col=imagecolorallocatealpha($image,255,255,255,127);

@@ -6,8 +6,9 @@ namespace PublicUHC\SkinCache;
 use PublicUHC\SkinCache\Downloaders\Downloader;
 use PublicUHC\SkinCache\Exceptions\DownloadException;
 use PublicUHC\SkinCache\Formatters\Formatter;
-use PublicUHC\SkinCache\Painters\TransparentImagePainter;
+use PublicUHC\SkinCache\Painters\ErrorImagePainter;
 use Stash\Interfaces\PoolInterface;
+use Stash\Item;
 
 class SkinFetcher {
 
@@ -21,9 +22,9 @@ class SkinFetcher {
      * @param Downloader $downloader the downloader to use, fetches the skins
      * @param Formatter $formatter the formatter to use, formats the images for use
      * @param PoolInterface $cachePool the caching pool to use for caching skins/transparents
-     * @param TransparentImagePainter $painter the painter to use for transparent images
+     * @param ErrorImagePainter $painter the painter to use for error images
      */
-    public function __construct(Downloader $downloader, Formatter $formatter, PoolInterface $cachePool, TransparentImagePainter $painter)
+    public function __construct(Downloader $downloader, Formatter $formatter, PoolInterface $cachePool, ErrorImagePainter $painter)
     {
         $this->downloader = $downloader;
         $this->formatter = $formatter;
@@ -37,7 +38,9 @@ class SkinFetcher {
      * @param $sizeY int the y height
      * @return string the image as a string
      */
-    function fetchTransparent($sizeX, $sizeY) {
+    function fetchTransparent($sizeX, $sizeY)
+    {
+        /** @var $cacheItem Item */
         $cacheItem = $this->cachePool->getItem('transparents', $sizeX, $sizeY);
 
         $data = $cacheItem->get();
@@ -59,7 +62,9 @@ class SkinFetcher {
      * @return mixed either the raw image string or the formatted version based on $format
      * @throws Exceptions\DownloadException if $error is true and image fetching failed
      */
-    function fetchSkin($username, $format = true, $error = false) {
+    function fetchSkin($username, $format = true, $error = false)
+    {
+        /** @var $cacheItem Item */
         $cacheItem = $this->cachePool->getItem('skins/skin', $username);
 
         $data = $cacheItem->get();
@@ -90,7 +95,9 @@ class SkinFetcher {
      * @return mixed either the raw image string or the formatted version based on $format
      * @throws Exceptions\DownloadException if $error is true and image fetching failed
      */
-    function fetchHelm($username, $size, $format = true, $error = false) {
+    function fetchHelm($username, $size, $format = true, $error = false)
+    {
+        /** @var $cacheItem Item */
         $cacheItem = $this->cachePool->getItem('skins/helm', $username, $size);
 
         $data = $cacheItem->get();
@@ -122,6 +129,7 @@ class SkinFetcher {
      */
     function fetchHead($username, $size, $format = true, $error = false)
     {
+        /** @var $cacheItem Item */
         $cacheItem = $this->cachePool->getItem('skins/skin/', $username);
 
         $data = $cacheItem->get();
