@@ -30,9 +30,9 @@ abstract class Formatter {
     }
 
     /**
-     * Add the formatter to the chain after this one
-     * @param Formatter $formatter the formatter to add after
-     * @return Formatter the formatter passed in
+     * Add the formatter to the end of the chain
+     * @param Formatter $formatter the formatter to the end
+     * @return Formatter this
      */
     public function then(Formatter $formatter) {
         if($this->next == null) {
