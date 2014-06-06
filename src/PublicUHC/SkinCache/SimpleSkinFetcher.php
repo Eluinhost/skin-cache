@@ -14,6 +14,19 @@ class SimpleSkinFetcher extends SkinFetcher {
 
     /**
      * Create a skin fetcher with some basic defaults.
+     * <p>
+     * Created skin fetcher will fetch skins from $base_url with maximum timeout $timeout. It will format them as HttpFoundation Responses.
+     * It will cache the images to $cacheDirectory and will show transparent images the same size as the request on a failed fetch.
+     * </p>
+     * <p>
+     * Uses the following parameters on creation:
+     * </p>
+     * <ul>
+     * <li>Downloader - MinotarLikeDownloader with a Guzzle Client set to base URL $base_url and with timeout $timeout</li>
+     * <li>RepsonseFormatter - HttpResponseFormatter</li>
+     * <li>PoolInterface - Stash\Pool with the FileSystem driver with it's cache directory set to $cacheDirectory</li>
+     * <li>ErrorImagePainter - TransparentImagePainter
+     * </ul>
      * @param $base_url string the base URL for the cached minotar site
      * @param $timeout int the timeout for fetching skins
      * @param $cacheDirectory string the path to cache the skins/error images in
