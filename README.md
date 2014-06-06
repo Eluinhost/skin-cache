@@ -50,11 +50,27 @@ Example for fetching from minotar.net with a 30 second timeout:
     
 ### Formatter
 
-There is only 1 implementation of the formatter available:
+NOTE: Only the raw images are cached, any formatting is applied to the raw images
+
+There are 3 implementations of the formatter available:
 
 `PublicUHC\SkinCache\Formatters\HttpResponseFormatter`
 
 It formats the images in a Symfony HttpResponse format from the [Symfony Http Foundation project](https://github.com/symfony/HttpFoundation)
+
+`PublicUHC\SkinCache\Formatters\RawImageFormatter`
+
+Returns the image as the raw image string
+
+`PublicUHC\SkinCache\Formatters\GreyscaleFormatter`
+
+Returns the image as a greyscale version of itself
+
+Formatters can be chained to make multiple formatting passes:
+
+    $formatter = (new GreyscaleFormatter())->then(new HttpResponseFormatter());
+    
+This will first make it greyscale and then make it a Http Foundation response.
 
 ### PoolInterface
 
