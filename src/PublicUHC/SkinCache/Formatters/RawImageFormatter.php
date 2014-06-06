@@ -3,7 +3,7 @@
 namespace PublicUHC\SkinCache\Formatters;
 
 
-class RawImageFormatter implements Formatter {
+class RawImageFormatter extends Formatter {
 
     /**
      * Doesn't format the image, passes the raw image back
