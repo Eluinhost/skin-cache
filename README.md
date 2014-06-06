@@ -15,7 +15,7 @@ Usage
 
 First you will need to get hold of a PublicUHC\SkinCache\SkinFetcher.
 
-It requires a Downloader, a Formatter and a PoolInterface.
+It requires a Downloader, a Formatter, a PoolInterface and a ErrorImagePainter.
 
 ### Downloader
 
@@ -64,11 +64,19 @@ Example - using the default Ephemeral driver:
 
     $pool = new Pool();
     
+### ErrorImagePainter
+
+There is only 1 implementation of the error image painter available:
+
+`PublicUHC\SkinCache\Painters\TransparentImagePainter`
+
+It will return a transparent image of the same dimensions for error images
+    
 ### Full Example
 
 The following example uses the MinotarLikeDownloader to fetch skins from the official minotar site, formats them in Http Foundation Response style and uses the default Ephemeral cache driver and then fetches the helm for the 'ghowden' account 16x16
 
     $downloader = new MinotarLikeDownloader(new Client(['base_url'=>'https://minotar.net/']));
-    $fetcher = new SkinFetcher($downloader, new HttpResponseFormatter(), new Pool());
+    $fetcher = new SkinFetcher($downloader, new HttpResponseFormatter(), new Pool(), new TransparentImagePainter());
     
     $fetcher->fetchHelm('ghowden', 16);
