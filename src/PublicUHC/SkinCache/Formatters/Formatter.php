@@ -20,8 +20,14 @@ abstract class Formatter {
         return $data;
     }
 
+    /**
+     * Add the formatter to the chain after this one
+     * @param Formatter $formatter the formatter to add after
+     * @return Formatter the formatter passed in
+     */
     public function then(Formatter $formatter) {
         $this->next = $formatter;
+        return $formatter;
     }
 
 } 
