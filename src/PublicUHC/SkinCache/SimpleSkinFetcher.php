@@ -3,6 +3,7 @@
 namespace PublicUHC\SkinCache;
 
 
+use DateTime;
 use GuzzleHttp\Client;
 use PublicUHC\SkinCache\Downloaders\MinotarLikeDownloader;
 use PublicUHC\SkinCache\Formatters\HttpResponseFormatter;
@@ -30,13 +31,14 @@ class SimpleSkinFetcher extends SkinFetcher {
      * @param $base_url string the base URL for the cached minotar site
      * @param $timeout int the timeout for fetching skins
      * @param $cacheDirectory string the path to cache the skins/error images in
+     * @param int|DateTime $ttl the number of seconds to cache skins for or a future DateTime to expire on before refetching them
      */
-    public function __construct($base_url, $timeout, $cacheDirectory)
+    public function __construct($base_url, $timeout, $cacheDirectory, $ttl)
     {
         $downloader = new MinotarLikeDownloader(new Client(['base_url'=>$base_url]), $timeout);
         $formatter = new HttpResponseFormatter();
         $cachePool = new Pool(new FileSystem(['path'=>$cacheDirectory]));
         $errorPainter = new TransparentImagePainter();
-        parent::__construct($downloader, $formatter, $cachePool, $errorPainter);
+        parent::__construct($downloader, $formatter, $cachePool, $errorPainter, $ttl);
     }
 } 

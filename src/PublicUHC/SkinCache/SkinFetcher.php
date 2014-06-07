@@ -3,6 +3,7 @@
 namespace PublicUHC\SkinCache;
 
 
+use DateTime;
 use PublicUHC\SkinCache\Downloaders\Downloader;
 use PublicUHC\SkinCache\Exceptions\DownloadException;
 use PublicUHC\SkinCache\Formatters\Formatter;
@@ -16,6 +17,7 @@ class SkinFetcher {
     private $formatter;
     private $cachePool;
     private $painter;
+    private $ttl;
 
     /**
      * Create a skin fetcher.
@@ -23,13 +25,15 @@ class SkinFetcher {
      * @param Formatter $formatter the formatter to use, formats the images for use
      * @param PoolInterface $cachePool the caching pool to use for caching skins/transparents
      * @param ErrorImagePainter $painter the painter to use for error images
+     * @param int|DateTime $ttl the number of seconds to cache skins for or a future DateTime to expire on before refetching them
      */
-    public function __construct(Downloader $downloader, Formatter $formatter, PoolInterface $cachePool, ErrorImagePainter $painter)
+    public function __construct(Downloader $downloader, Formatter $formatter, PoolInterface $cachePool, ErrorImagePainter $painter, $ttl)
     {
         $this->downloader = $downloader;
         $this->formatter = $formatter;
         $this->cachePool = $cachePool;
         $this->painter = $painter;
+        $this->ttl = $ttl;
     }
 
     /**
@@ -48,6 +52,7 @@ class SkinFetcher {
             $cacheItem->lock();
 
             $data = $this->painter->getImage($sizeX, $sizeY);
+            //should cache until cleared
             $cacheItem->set($data);
         }
 
@@ -76,7 +81,7 @@ class SkinFetcher {
             //if failed throw error or return a transparent image based on $error
             try {
                 $data = $this->downloader->downloadSkin($username);
-                $cacheItem->set($data);
+                $cacheItem->set($data, $this->ttl);
             } catch (DownloadException $ex) {
                 if($error) { throw $ex; }
                 $data = $this->fetchTransparent(64, 32);
@@ -109,7 +114,7 @@ class SkinFetcher {
             //if failed throw error or return a transparent image based on $error
             try {
             $data = $this->downloader->downloadHelm($username, $size);
-                $cacheItem->set($data);
+                $cacheItem->set($data, $this->ttl);
             } catch (DownloadException $ex) {
                 if($error) { throw $ex; }
                 $data = $this->fetchTransparent($size, $size);
@@ -141,7 +146,7 @@ class SkinFetcher {
             //if failed throw error or return a transparent image based on $error
             try {
                 $data = $this->downloader->downloadHead($username, $size);
-                $cacheItem->set($data);
+                $cacheItem->set($data, $this->ttl);
             } catch (DownloadException $ex) {
                 if($error) { throw $ex; }
                 $data = $this->fetchTransparent($size, $size);
