@@ -3,8 +3,6 @@ SkinCache
 
 Cache Minecraft skins/icons and serve them locally.
 
-DEV STATUS: IN PROGRESS / INCOMPLETE
-
 Dependencies
 ------------
 
@@ -15,11 +13,11 @@ Usage
 
 There is a class `PublicUHC\SkinCache\SimpleSkinFetcher` that uses some default classes and can be used like this:
 
-    $fetcher = new SimpleSkinFetcher('https://minotar.net', 10, './cache');
+    $fetcher = new SimpleSkinFetcher('https://minotar.net', 10, './cache', 3600);
 
 To change the classes used or for better tweaking use the class `PublicUHC\SkinCache\SkinFetcher`.
 
-It requires a Downloader, a Formatter, a PoolInterface and a ErrorImagePainter.
+It requires a Downloader, a Formatter, a PoolInterface and a ErrorImagePainter. It also requires a 'ttl', either null to store forever, an integer as the number of seconds until expiry or a DateTime for when the fetched skins should expire.
 
 ### Downloader
 
