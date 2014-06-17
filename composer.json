@@ -2,6 +2,7 @@
     "name": "publicuhc/skin-cache",
     "description": "Serve Minecraft skins locally",
     "minimum-stability": "stable",
+    "keywords": ["Minecraft", "skins", "cache", "minotar"],
     "license": "GPLv3",
     "authors": [
         {
