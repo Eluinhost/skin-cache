@@ -3,7 +3,7 @@
     "description": "Serve Minecraft skins locally",
     "minimum-stability": "stable",
     "keywords": ["Minecraft", "skins", "cache", "minotar"],
-    "license": "GPLv3",
+    "license": "GPL-3.0+",
     "authors": [
         {
             "name": "Eluinhost",
