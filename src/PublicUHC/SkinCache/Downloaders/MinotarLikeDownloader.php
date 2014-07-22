@@ -22,19 +22,19 @@ class MinotarLikeDownloader extends Downloader {
         $this->timeout = $timeout;
     }
 
-    function downloadSkin($username)
+    public function downloadSkin($username)
     {
-        return $this->_downloadFromURL('/skin/'.$username);
+        return $this->downloadFromURL('/skin/'.$username);
     }
 
-    function downloadHelm($username, $size)
+    public function downloadHelm($username, $size)
     {
-        return $this->_downloadFromURL('/helm/'.$username.'/'.$size.'.png');
+        return $this->downloadFromURL('/helm/'.$username.'/'.$size.'.png');
     }
 
-    function downloadHead($username, $size)
+    public function downloadHead($username, $size)
     {
-        return $this->_downloadFromURL('/avatar/'.$username.'/'.$size.'.png');
+        return $this->downloadFromURL('/avatar/'.$username.'/'.$size.'.png');
     }
 
     /**
@@ -43,7 +43,7 @@ class MinotarLikeDownloader extends Downloader {
      * @return string the resource from the URL
      * @throws DownloadException if fetching URL failed or non 200 OK response
      */
-    function _downloadFromURL($path)
+    function downloadFromURL($path)
     {
         try {
             $data = $this->client->get($path, ['timeout' => $this->timeout]);

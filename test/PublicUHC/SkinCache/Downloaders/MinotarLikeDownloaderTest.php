@@ -43,7 +43,7 @@ class MinotarLikeDownloaderTest extends PHPUnit_Framework_TestCase {
             ->method('getBody')
             ->will($this->returnValue($stream));
 
-        $data = $this->downloader->_downloadFromURL('this could be anything');
+        $data = $this->downloader->downloadFromURL('this could be anything');
 
         $this->assertEquals('TEST BODY', $data);
     }
@@ -58,7 +58,7 @@ class MinotarLikeDownloaderTest extends PHPUnit_Framework_TestCase {
 
         $this->setExpectedException('PublicUHC\SkinCache\Exceptions\DownloadException');
 
-        $this->downloader->_downloadFromURL('this could be anything');
+        $this->downloader->downloadFromURL('this could be anything');
     }
 
     public function testFetchNon200FromURL()
@@ -69,7 +69,7 @@ class MinotarLikeDownloaderTest extends PHPUnit_Framework_TestCase {
 
         $this->setExpectedException('PublicUHC\SkinCache\Exceptions\DownloadException');
 
-        $this->downloader->_downloadFromURL('this could be anything');
+        $this->downloader->downloadFromURL('this could be anything');
     }
 
     public function testGrabSkinFromMinotar()
