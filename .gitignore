@@ -1,6 +1,7 @@
 # Project Files #
 #################
 /vendor
+composer.lock
 
 # IDE files #
 #############
