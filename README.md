@@ -1,7 +1,7 @@
 SkinCache
 ============
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/3a11f5ef-8863-4441-aa61-9119046e12eb/small.png)](https://insight.sensiolabs.com/projects/3a11f5ef-8863-4441-aa61-9119046e12eb)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/bd938e72-b546-451c-ba20-0bc616e63791/small.png)](https://insight.sensiolabs.com/projects/bd938e72-b546-451c-ba20-0bc616e63791)
 
 Cache Minecraft skins/icons and serve them locally.
 
