@@ -1,6 +1,8 @@
 SkinCache
 ============
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/3a11f5ef-8863-4441-aa61-9119046e12eb/small.png)](https://insight.sensiolabs.com/projects/3a11f5ef-8863-4441-aa61-9119046e12eb)
+
 Cache Minecraft skins/icons and serve them locally.
 
 Dependencies
